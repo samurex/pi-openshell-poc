@@ -1,0 +1,28 @@
+id: opencode
+display_name: OpenCode Zen
+description: OpenCode Zen inference access for pi
+category: inference
+inference_capable: true
+
+credentials:
+  - name: api_key
+    description: OpenCode API key
+    env_vars:
+      - OPENCODE_API_KEY
+    required: true
+    auth_style: bearer
+    header_name: authorization
+
+discovery:
+  credentials:
+    - api_key
+
+endpoints:
+  - host: opencode.ai
+    port: 443
+    protocol: rest
+    access: read-write
+    enforcement: enforce
+
+binaries:
+  - /usr/local/bin/node

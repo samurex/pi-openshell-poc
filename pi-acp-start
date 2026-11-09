@@ -1,0 +1,9 @@
+#!/bin/sh
+# Runs inside the sandbox. Seeds pi settings, then hands stdio to pi-acp.
+# Never print to stdout here: stdout is the ACP channel.
+set -e
+: "${PI_CODING_AGENT_DIR:=/tmp/pi-agent}"
+export PI_CODING_AGENT_DIR
+mkdir -p "$PI_CODING_AGENT_DIR"
+[ -f "$PI_CODING_AGENT_DIR/settings.json" ] || cp /usr/local/share/pi-defaults/settings.json "$PI_CODING_AGENT_DIR/settings.json"
+exec pi-acp "$@"
